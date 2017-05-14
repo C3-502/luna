@@ -3,24 +3,66 @@
 
 #include <string>
 
+#include "../module/mylog/log_warpper.h"
+
 namespace luna
 {
 
 struct SystemConfig
 {
-	int maxWorker;
+    int maxWorker;
+    bool daemon;
+    SystemConfig()
+    {
+        maxWorker = 2;
+        daemon = true;
+    }
+};
+
+struct LogConfig
+{
+    unsigned maxSize;
+    LogCutType cutType;
+    LogLevel level;
+    std::string logDir;
+    std::string logName;
+
+    LogConfig()
+    {
+        maxSize = 512;
+        cutType = LogCutType::LogCutByDay;
+        level = LogLevel::LogDebug;
+        logDir = "../config/";
+        logName = "luna";
+    }
 };
 
 class Config
 {
 public:
-	config();
-	~config();
-	int init(const std::string& path);
+    Config()
+    {}
+    ~Config()
+    {}
+    int init(const std::string &path);
+    bool isRunWithDaemon() const
+    {
+        return systemConfig.daemon;
+    }
+    int getMaxWorker()
+    {
+        return systemConfig.maxWorker;
+    }
+
+    const LogConfig &getLogConfig()
+    {
+        return logConfig;
+    }
 
 private:
-	std::string configPath;
-	SystemConfig systemConfig;
+    std::string configPath;
+    SystemConfig systemConfig;
+    LogConfig logConfig;
 };
 
 }
