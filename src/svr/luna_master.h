@@ -21,7 +21,7 @@ class LunaMasterProcess
 {
 public:
     LunaMasterProcess(int workerSize_, const char *name_ = "luna_master");
-    ~LunaMasterProcess();
+    ~LunaMasterProcess() {}
 
     int run();
 private:
@@ -29,15 +29,14 @@ private:
     void masterLoop();
     void initSignals();
 private:
+    ProcessType type;
     std::vector<LunaWorkerProcessPtr> workers;
     std::string name;
     int workerSize;
 
-    volatile static sig_atomic_t sigKill;
-    volatile static sig_atomic_t sigTerm;
-    volatile static sig_atomic_t sigChild;
 };
 
+using LunaMasterProcess = LunaMasterProcess;
 using LunaMasterProcessPtr = std::shared_ptr<LunaMasterProcess>;
 }
 #endif //LUNA_LUNA_MASTER_H

@@ -1,5 +1,4 @@
 #include <string>
-#include <memory>
 
 #include "util/const.h"
 #include "svr/luna_server.h"
@@ -22,8 +21,11 @@ int main(int argc, char *argv[])
     {
         return LUNA_RUNTIME_NO_CONF_PATH;
     }
-
-    std::shared_ptr<luna::LunaServer> server(new luna::LunaServer);
-
-    return LUNA_RUNTIME_OK;
+    luna::LunaServerPtr server(new luna::LunaServer);
+    int ret = server->init(configPath);
+    if (ret != LUNA_RUNTIME_OK)
+    {
+        return ret;
+    }
+    return server->run();
 }

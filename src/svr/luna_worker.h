@@ -9,6 +9,8 @@
 #include <string>
 #include <functional>
 
+#include "util/const.h"
+
 namespace luna
 {
 class LunaWorkerProcess
@@ -19,6 +21,7 @@ public:
     typedef std::function<void()> WorkerFunc;
     int startFork(const WorkerFunc& workFunc);
 private:
+    ProcessType type;
     std::string name;
     pid_t pid;
 };

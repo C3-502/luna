@@ -1,10 +1,12 @@
 #ifndef LUNASERVER_H
 #define LUNASERVER_H
 #include <string>
+#include <memory>
 
 #include "../util/const.h"
 #include "../util/config.h"
 #include "luna_master.h"
+
 namespace luna
 {
 
@@ -26,6 +28,9 @@ private:
     Config svrConf;
     LunaMasterProcessPtr master;
 };
+
+using LunaServer = LunaServer;
+using LunaServerPtr = std::shared_ptr<LunaServer>;
 
 }
 

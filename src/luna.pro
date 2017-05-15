@@ -8,16 +8,16 @@ TARGET = luna
 DESTDIR = ../build/bin
 OBJECTS_DIR = ../build/objs
 
-
 SOURCES += main.cpp \
+    svr/luna_server.cpp \
+    module/log/src/log.cpp \
+    module/log/src/log_wrapper.cpp \
     util/config.cpp \
-    net/poller.cpp \
-    svr/luna_server.cpp
+    svr/luna_master.cpp \
+    svr/luna_worker.cpp
 
 HEADERS += \
-    util/config.h \
-    net/event_base.h \
-    net/poller.h \
-    util/const.h \
-    svr/luna_server.h
+    svr/luna_master.h \
+    svr/luna_server.h \
+    svr/luna_worker.h
 

@@ -3,24 +3,50 @@
 //
 
 #include <sys/wait.h>
+#include <unistd.h>
 
 #include "luna_master.h"
+#include "../module/log/include/log_warpper.h"
 
 namespace luna
 {
+
+volatile static sig_atomic_t lunaQuit = 0;
+
 static void testWorker()
 {
-
+    while (true) {
+        LOG_DEBUG("%s", "worker run");
+        sleep(1);
+    }
 }
 
-volatile sig_atomic_t LunaMasterProcess::sigKill = 0;
+static void signalHandler(int sig)
+{
+    switch (sig)
+    {
+    case SIGINT:
+    case SIGTERM:
+    case SIGQUIT:
+        lunaQuit = 1;
+        break;
 
-volatile sig_atomic_t LunaMasterProcess::sigTerm = 0;
+    case SIGCHLD:
+        break;
+    default:
+        break;
+    }
+}
 
-volatile sig_atomic_t LunaMasterProcess::sigChild = 0;
+struct SignalHandler
+{
+    int sig;
+    const char* name;
+    void (*handler)(int);
+};
 
 LunaMasterProcess::LunaMasterProcess(int workerSize_, const char *name_)
-    : workers(workerSize_), workerSize(workerSize_), name(name_)
+    : type(ProcessMaster), workers(workerSize_), workerSize(workerSize_), name(name_)
 {
 
 }
@@ -31,13 +57,8 @@ int LunaMasterProcess::run()
         return LUNA_RUNTIME_ERROR;
     }
 
-    int ret = spawnWorkers();
-    if (ret != LUNA_RUNTIME_OK)
-    {
-
-    }
-
-
+    spawnWorkers();
+    masterLoop();
     return LUNA_RUNTIME_OK;
 }
 int LunaMasterProcess::spawnWorkers()
@@ -53,22 +74,57 @@ int LunaMasterProcess::spawnWorkers()
 }
 void LunaMasterProcess::masterLoop()
 {
-    while (!sigKill && !sigTerm)
+    //use sigterm first, if no effect, use sigkill.
+    int lunaQuitCount = 0;
+    while (true)
     {
-        int status;
-        int ret = wait(&status);
-        if (ret != -1)
+        if (lunaQuit)
         {
-
-        }
-        else
-        {
+            ++lunaQuitCount;
+            if  (lunaQuitCount == 1) // first signal recv
+            {
+                LOG_INFO("%s", "master will send sigterm to woker");
+            }
+            else if (lunaQuitCount == 2)
+            {
+                LOG_INFO("%s", "master will send sigkill to woker");
+            }
+            else
+            {
+                LOG_INFO("%s", "master has sent signal to worker");
+            }
 
         }
     }
 }
 void LunaMasterProcess::initSignals()
 {
+    SignalHandler sigHandlerArr[] =
+    {
+        {
+            SIGPIPE, "SIGPIPE", SIG_IGN
+        },
 
+        {
+            SIGINT, "SIGINT", signalHandler
+        },
+
+        {
+            SIGTERM, "SIGTERM", signalHandler
+        },
+
+        {
+            SIGQUIT, "SIGQUIT", signalHandler
+        },
+
+        {
+            SIGHUP, "SIGHUP", signalHandler
+        },
+
+        {
+            SIGCHLD, "SIGCHLD", signalHandler
+        },
+    };
 }
+
 }

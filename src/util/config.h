@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "../module/mylog/log_warpper.h"
+#include "../module/log/include/log_warpper.h"
 
 namespace luna
 {
@@ -32,7 +32,7 @@ struct LogConfig
         maxSize = 512;
         cutType = LogCutType::LogCutByDay;
         level = LogLevel::LogDebug;
-        logDir = "../config/";
+        logDir = "../log/";
         logName = "luna";
     }
 };

@@ -10,7 +10,7 @@ namespace luna
 {
 
 LunaWorkerProcess::LunaWorkerProcess(const char *name_)
-    : name(name_)
+    : name(name_), type(ProcessWorker)
 {
 
 }
@@ -23,14 +23,14 @@ int LunaWorkerProcess::startFork(const LunaWorkerProcess::WorkerFunc &workFunc)
     }
     else if (pid == 0)
     {
-        this->pid = pid;
-        return LUNA_RUNTIME_OK;
+        workFunc();
+        exit(LUNA_RUNTIME_OK);
     }
     else
     {
-        workFunc();
+        this->pid = pid;
+        return LUNA_RUNTIME_OK;
     }
-    return 0;
 }
 
 }

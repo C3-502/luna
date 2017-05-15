@@ -10,4 +10,11 @@
 #define LUNA_RUNTIME_LOG_ERROR -300
 #define LUNA_RUNTIME_LOG_NO_DIR -301
 #define LUNA_RUNTIME_LOG_NOT_DIR -302
+
+typedef enum ProcessType
+{
+    ProcessMaster,
+    ProcessWorker,
+} ProcessType;
+
 #endif // CONST_H

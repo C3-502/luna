@@ -1,5 +1,5 @@
 #include "luna_server.h"
-#include "../module/mylog/log_warpper.h"
+#include "../module/log/include/log_warpper.h"
 namespace luna
 {
 
@@ -12,7 +12,8 @@ int LunaServer::init(const std::string &confPath)
         return LUNA_RUNTIME_CONF_INIT_ERROR;
     }
 
-    return LUNA_RUNTIME_OK;
+    ret = initLog();
+    return ret;
 }
 int LunaServer::run()
 {
@@ -49,6 +50,7 @@ int LunaServer::initLog()
     }
 
     LOG_INFO("%s", "log init success");
+    return LUNA_RUNTIME_OK;
 }
 
 }
