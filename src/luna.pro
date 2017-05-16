@@ -13,11 +13,10 @@ SOURCES += main.cpp \
     module/log/src/log.cpp \
     module/log/src/log_wrapper.cpp \
     util/config.cpp \
-    svr/luna_master.cpp \
-    svr/luna_worker.cpp
+    svr/luna_process.cpp
 
 HEADERS += \
-    svr/luna_master.h \
     svr/luna_server.h \
-    svr/luna_worker.h
+    util/common_inc.h \
+    svr/luna_process.h
 

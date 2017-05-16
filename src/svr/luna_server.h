@@ -5,7 +5,7 @@
 
 #include "../util/const.h"
 #include "../util/config.h"
-#include "luna_master.h"
+#include "luna_process.h"
 
 namespace luna
 {

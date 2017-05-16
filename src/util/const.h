@@ -17,4 +17,11 @@ typedef enum ProcessType
     ProcessWorker,
 } ProcessType;
 
+typedef enum ProcessStatus
+{
+    ProcessNew,
+    ProcessRunning,
+    ProcessExited
+} ProcessStatus;
+
 #endif // CONST_H
