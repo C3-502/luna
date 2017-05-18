@@ -82,7 +82,11 @@ int LunaMasterProcess::run()
     sigprocmask(SIG_BLOCK, &sigset, &oldset);
 
     initSignals();
-    spawnWorkers();
+
+    int ret = spawnWorkers();
+    if (ret != LUNA_RUNTIME_OK)
+        return ret;
+
     masterLoop();
 
     sigprocmask(SIG_BLOCK, &oldset, NULL);
@@ -94,7 +98,11 @@ int LunaMasterProcess::spawnWorkers()
     {
         LunaWorkerProcessPtr worker(new LunaWorkerProcess);
         workers[i] = worker;
-        worker->startFork(testWorker);
+        int ret = worker->startFork(testWorker);
+        if (ret != LUNA_RUNTIME_OK)
+        {
+            return ret;
+        }
     }
 
     return LUNA_RUNTIME_OK;
@@ -151,7 +159,6 @@ int LunaMasterProcess::restartWorkers()
         }
         ++liveWorkers;
     }
-    LOG_DEBUG("liveWorkers=%d", liveWorkers);
     return liveWorkers;
 }
 
@@ -283,7 +290,8 @@ int LunaWorkerProcess::startFork(const LunaWorkerProcess::WorkerFunc &workFunc)
     pid_t pid = fork();
     if (pid == -1)
     {
-
+        LOG_ERROR("fork failed");
+        return LUNA_RUNTIME_ERROR;
     }
     else if (pid == 0)
     {

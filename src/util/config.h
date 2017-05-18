@@ -2,11 +2,19 @@
 #define _LUNA_UTIL_CONFIG_H_
 
 #include <string>
-
-#include "../module/log/include/log_warpper.h"
+#include <vector>
+#include "common_inc.h"
 
 namespace luna
 {
+
+struct TcpListenerConfig
+{
+    std::string ip;
+    uint16_t port;
+    uint32_t backlog;
+    uint32_t maxAccept;
+};
 
 struct SystemConfig
 {
@@ -59,10 +67,16 @@ public:
         return logConfig;
     }
 
+    const std::vector<TcpListenerConfig>& getTcpListenerConfigs()
+    {
+        return tcpListenerConfigs;
+    }
+
 private:
     std::string configPath;
     SystemConfig systemConfig;
     LogConfig logConfig;
+    std::vector<TcpListenerConfig> tcpListenerConfigs;
 };
 
 }
