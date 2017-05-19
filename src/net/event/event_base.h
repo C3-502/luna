@@ -6,10 +6,10 @@
 namespace luna
 {
 
-enum class EventType
+enum EventType
 {
     EVENT_IN  = 1 << 0,
-    EVENT_PRT = 1 << 1,
+    EVENT_PRI = 1 << 1,
     EVENT_OUT = 1 << 2,
     EVENT_ERR = 1 << 3,
     EVENT_HUP = 1 << 4,
@@ -25,6 +25,10 @@ public:
 
     void setFileDescriptor(int fd_) { fd = fd_; }
     int getFileDescriptor() const { return fd; }
+
+    static uint32_t transformEpollEvent(uint32_t epollEvent);
+private:
+
 private:
 	int fd;
 };

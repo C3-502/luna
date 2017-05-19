@@ -21,7 +21,9 @@ SOURCES += main.cpp \
     net/event/tcp_listener.cpp \
     net/tcp_manager.cpp \
     net/event/tcp_connection.cpp \
-    net/ipv4_addr.cpp
+    net/ipv4_addr.cpp \
+    svr/luna_runtime_api.cpp \
+    net/event/event_base.cpp
 
 HEADERS += \
     svr/luna_server.h \
@@ -39,5 +41,6 @@ HEADERS += \
     net/tcp_manager.h \
     util/common_def.h \
     net/event/tcp_connection.h \
-    net/ipv4_addr.h
+    net/ipv4_addr.h \
+    svr/luna_runtime_api.h
 

@@ -1,5 +1,7 @@
 #include "luna_server.h"
 #include "../module/log/include/log_warpper.h"
+#include "runtime_manager.h"
+
 namespace luna
 {
 
@@ -25,6 +27,13 @@ int LunaServer::run()
         {
             return ret;
         }
+    }
+
+    RuntimeManagerPtr runtimeManager = RuntimeManager::getInstance();
+    ret = runtimeManager->init(svrConf);
+    if (ret != LUNA_RUNTIME_OK)
+    {
+        return ret;
     }
     int maxWorker = svrConf.getMaxWorker();
     master = LunaMasterProcessPtr(new LunaMasterProcess(maxWorker));

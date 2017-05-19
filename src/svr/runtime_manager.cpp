@@ -13,6 +13,16 @@ RuntimeManagerPtr RuntimeManager::getInstance()
     return handle;
 }
 
+int RuntimeManager::init(const Config &config)
+{
+    int ret = net.init(config);
+    if (ret != LUNA_RUNTIME_OK)
+    {
+        return LUNA_RUNTIME_ERROR;
+    }
+    return LUNA_RUNTIME_OK;
+}
+
 RuntimeManager::RuntimeManager()
 {
 

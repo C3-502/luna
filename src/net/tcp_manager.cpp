@@ -3,7 +3,8 @@
 
 namespace luna {
 
-TcpManager::TcpManager()
+TcpManager::TcpManager(NetManager *netManager_)
+    : netManager(netManager_)
 {
 
 }
@@ -21,6 +22,12 @@ int TcpManager::init(const Config &config)
                                 tcpListenerConfig.maxAccept);
         listenList.push_back(tcpListener);
     }
+
+    int ret = start();
+    if (ret != LUNA_RUNTIME_OK)
+    {
+        return ret;
+    }
     return LUNA_RUNTIME_OK;
 }
 
@@ -37,6 +44,17 @@ int TcpManager::start()
         }
     }
     return ret;
+}
+
+int TcpManager::enableListener()
+{
+    size_t len = listenList.size();
+    for (int i = 0; i < len; ++i)
+    {
+        uint32_t event = EVENT_IN;
+        netManager->addEvent(&(listenList[i]), event);
+    }
+    return LUNA_RUNTIME_OK;
 }
 
 }

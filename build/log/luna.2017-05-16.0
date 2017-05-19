@@ -1,0 +1,25 @@
+2107-05-16 18:51:30 INFO [1;33m23490 ../src/svr/luna_server.cpp:52:initLog log init success[0m
+2107-05-16 18:51:40 DEBUG [0;32;32m23490 ../src/svr/luna_process.cpp:189:masterLoop 2 worker live[0m
+2107-05-16 18:51:44 DEBUG [0;32;32m23490 ../src/svr/luna_process.cpp:189:masterLoop 2 worker live[0m
+2107-05-16 18:51:44 INFO [1;33m23490 ../src/svr/luna_process.cpp:202:masterLoop master will send sigterm to woker[0m
+2107-05-16 18:51:44 DEBUG [0;32;32m23491 ../src/svr/luna_process.cpp:50:signalHandler worker recv signal 15[0m
+2107-05-16 18:51:44 DEBUG [0;32;32m23490 ../src/svr/luna_process.cpp:313:handleMasterSignal send signal 15 to worker 23491 success[0m
+2107-05-16 18:51:44 DEBUG [0;32;32m23490 ../src/svr/luna_process.cpp:313:handleMasterSignal send signal 15 to worker 23492 success[0m
+2107-05-16 18:51:44 DEBUG [0;32;32m23492 ../src/svr/luna_process.cpp:50:signalHandler worker recv signal 15[0m
+2107-05-16 18:51:44 DEBUG [0;32;32m23490 ../src/svr/luna_process.cpp:127:restartWorkers a worker exit, pid=23491[0m
+2107-05-16 18:51:44 DEBUG [0;32;32m23490 ../src/svr/luna_process.cpp:127:restartWorkers a worker exit, pid=23492[0m
+2107-05-16 18:53:35 INFO [1;33m23618 ../src/svr/luna_server.cpp:52:initLog log init success[0m
+2107-05-16 18:53:45 DEBUG [0;32;32m23618 ../src/svr/luna_process.cpp:189:masterLoop 2 worker live[0m
+2107-05-16 18:53:55 DEBUG [0;32;32m23618 ../src/svr/luna_process.cpp:189:masterLoop 2 worker live[0m
+2107-05-16 18:54:01 DEBUG [0;32;32m23618 ../src/svr/luna_process.cpp:189:masterLoop 2 worker live[0m
+2107-05-16 18:54:01 INFO [1;33m23618 ../src/svr/luna_process.cpp:202:masterLoop master will send sigterm to woker[0m
+2107-05-16 18:54:01 DEBUG [0;32;32m23618 ../src/svr/luna_process.cpp:313:handleMasterSignal send signal 15 to worker 23619 success[0m
+2107-05-16 18:54:01 DEBUG [0;32;32m23618 ../src/svr/luna_process.cpp:313:handleMasterSignal send signal 15 to worker 23620 success[0m
+2107-05-16 18:54:01 DEBUG [0;32;32m23620 ../src/svr/luna_process.cpp:50:signalHandler worker recv signal 15[0m
+2107-05-16 18:54:01 DEBUG [0;32;32m23619 ../src/svr/luna_process.cpp:50:signalHandler worker recv signal 15[0m
+2107-05-16 18:54:01 DEBUG [0;32;32m23618 ../src/svr/luna_process.cpp:127:restartWorkers a worker exit, pid=23619[0m
+2107-05-16 18:54:01 DEBUG [0;32;32m23618 ../src/svr/luna_process.cpp:127:restartWorkers a worker exit, pid=23620[0m
+2107-05-16 18:54:01 DEBUG [0;32;32m23618 ../src/svr/luna_process.cpp:115:restartWorkers waitpid failed, errno 10, errstr No child processes[0m
+2107-05-16 18:54:01 DEBUG [0;32;32m23618 ../src/svr/luna_process.cpp:154:restartWorkers liveWorkers=0[0m
+2107-05-16 18:54:01 DEBUG [0;32;32m23618 ../src/svr/luna_process.cpp:189:masterLoop 0 worker live[0m
+2107-05-16 18:54:01 INFO [1;33m23618 ../src/svr/luna_process.cpp:193:masterLoop master is going to exit[0m

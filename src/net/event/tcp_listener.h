@@ -18,6 +18,7 @@ class TcpListener : public EventBase
 public:
     TcpListener(const IPv4Addr& addr_, uint32_t backlog_, uint32_t maxAccpet_);
     int startListen();
+    int handleEvent(EventType event);
 private:
     IPv4Addr addr;
     uint32_t backlog;

@@ -14,6 +14,13 @@ struct TcpListenerConfig
     uint16_t port;
     uint32_t backlog;
     uint32_t maxAccept;
+    TcpListenerConfig()
+    {
+        ip = "127.0.0.1";
+        port = 8080;
+        backlog = 10;
+        maxAccept = 10;
+    }
 };
 
 struct SystemConfig
@@ -49,7 +56,9 @@ class Config
 {
 public:
     Config()
-    {}
+    {
+        tcpListenerConfigs.push_back(TcpListenerConfig());
+    }
     ~Config()
     {}
     int init(const std::string &path);
