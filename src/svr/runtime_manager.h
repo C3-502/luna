@@ -4,12 +4,9 @@
 #include "../util/noncopyable.h"
 #include "../util/config.h"
 #include "net_manager.h"
+#include "../util/common_inc.h"
 
 namespace luna {
-
-class RuntimeManager;
-using RuntimeManager = RuntimeManager;
-using RuntimeManagerPtr = std::shared_ptr<RuntimeManager>;
 
 class RuntimeManager
 {
@@ -17,7 +14,7 @@ class RuntimeManager
 public:
     static RuntimeManagerPtr getInstance();
     int init(const Config& config);
-    NetManager* getNetManager() { return &net; }
+    NetManagerPtr getNetManager() { return &net; }
 private:
     RuntimeManager();
 private:

@@ -3,7 +3,7 @@
 
 #include "../util/config.h"
 
-int lunaWorkBefore(const Config& config);
+int lunaWorkBefore(const luna::Config &config);
 int lunaWorkFunc();
 int lunaWorkAfter();
 

@@ -8,7 +8,7 @@ RuntimeManagerPtr RuntimeManager::getInstance()
 {
     if (!handle)
     {
-        handle = RuntimeManagerPtr(new RuntimeManager);
+        handle = new RuntimeManager;
     }
     return handle;
 }

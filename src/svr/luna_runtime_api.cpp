@@ -19,7 +19,7 @@ int lunaWorkBefore(const Config &config)
 int lunaWorkFunc()
 {
     RuntimeManagerPtr runtimeManager = RuntimeManager::getInstance();
-    NetManager* net = runtimeManager->getNetManager();
+    NetManagerPtr net = runtimeManager->getNetManager();
     int ret = net->initPoll(1024);
     if (ret != LUNA_RUNTIME_OK)
     {

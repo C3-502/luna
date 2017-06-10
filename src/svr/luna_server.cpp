@@ -37,8 +37,9 @@ int LunaServer::run()
     }
     int maxWorker = svrConf.getMaxWorker();
     master = LunaMasterProcessPtr(new LunaMasterProcess(maxWorker));
-    master->run();
+    return master->run();
 }
+
 int LunaServer::runWithDaemon()
 {
     return LUNA_RUNTIME_OK;

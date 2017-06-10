@@ -46,11 +46,18 @@ int NetManager::delEvent(EventBase *eb, uint32_t event)
 int NetManager::run()
 {
     // worker main loop
-    tcpManager.enableListener();
+    int ret = tcpManager.enableListener();
+    if (ret != LUNA_RUNTIME_OK)
+    {
+
+    }
 
     while (true)
     {
-        netPoller.poll(10);
+        LOG_DEBUG("active connection number: %d, die connection number: %d",
+                  tcpManager.activeConNumber(), tcpManager.dieConNumber());
+        tcpManager.clearDieConnections();
+        netPoller.poll(-1);
     }
 }
 

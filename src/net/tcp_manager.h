@@ -3,8 +3,6 @@
 
 #include <vector>
 
-#include "../svr/net_manager.h"
-#include "./event/tcp_listener.h"
 #include "../util/common_inc.h"
 #include "../util/config.h"
 
@@ -13,17 +11,23 @@ namespace luna {
 class TcpManager
 {
 public:
-    TcpManager(NetManager* netManager_);
+    TcpManager(NetManagerPtr netManager_);
     int init(const Config& config);
     int start();
     int enableListener();
+
+    void addDieConnection(TcpConnectionPtr connection);
+    void clearDieConnections();
+
+    uint32_t activeConNumber() const;
+    uint32_t dieConNumber() const { return dieConnections.size(); }
 private:
 
 private:
-    std::vector<TcpListener> listenList;
-
+    std::vector<TcpListenerPtr> listenList;
+    std::vector<TcpConnectionPtr> dieConnections;
 private:
-    NetManager* netManager;
+    NetManagerPtr netManager;
 };
 
 

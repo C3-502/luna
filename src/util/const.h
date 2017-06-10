@@ -13,6 +13,15 @@
 #define LUNA_RUNTIME_LOG_NO_DIR -301
 #define LUNA_RUNTIME_LOG_NOT_DIR -302
 
+#define LUNA_IO_ERROR -400
+#define LUNA_IO_CLOSE -401
+#define LUNA_IO_COMPLETE -402
+
+#define LUNA_CON_ERROR -500
+#define LUNA_CON_CONTINUE -501
+#define LUNA_CON_NEXT -502
+#define LUNA_CON_CLOSE -503
+
 
 typedef enum ProcessType
 {

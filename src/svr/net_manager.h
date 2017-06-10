@@ -7,6 +7,7 @@
 #include "../util/config.h"
 #include "../net/tcp_manager.h"
 #include "../net/poller.h"
+#include "../util/common_inc.h"
 
 namespace luna {
 
@@ -27,7 +28,6 @@ private:
     Poller netPoller;
 };
 
-using NetManager = NetManager;
 }
 
 

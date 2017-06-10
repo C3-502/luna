@@ -8,7 +8,7 @@
 
 #include "luna_process.h"
 #include "../util/common_inc.h"
-
+#include "luna_runtime_api.h"
 namespace luna
 {
 
@@ -21,10 +21,7 @@ static void testWorker()
     sigset_t empty;
     sigemptyset(&empty);
     sigprocmask(SIG_SETMASK, &empty, NULL);
-    while (true) {
-        //LOG_DEBUG("%s", "worker run");
-        sleep(10);
-    }
+    lunaWorkFunc();
 }
 
 static void signalHandler(int sig)

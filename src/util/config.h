@@ -29,7 +29,7 @@ struct SystemConfig
     bool daemon;
     SystemConfig()
     {
-        maxWorker = 2;
+        maxWorker = 1;
         daemon = true;
     }
 };
@@ -76,7 +76,7 @@ public:
         return logConfig;
     }
 
-    const std::vector<TcpListenerConfig>& getTcpListenerConfigs()
+    const std::vector<TcpListenerConfig>& getTcpListenerConfigs() const
     {
         return tcpListenerConfigs;
     }

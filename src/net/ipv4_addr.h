@@ -16,7 +16,7 @@ public:
     const std::string& getIPStr() const { return ip_str; }
     uint16_t getPort() { return port; }
 
-    struct sockaddr transformToSocketAddr();
+    sockaddr_in transformToSocketAddr();
 private:
     void transformIPv4BinaryToStr(uint32_t ip_);
 private:

@@ -1,5 +1,5 @@
 *.o
-luna.pro.user
+./src/luna.pro.user
 /.idea/
-/build/
+./build/
 /luna-Debug/
